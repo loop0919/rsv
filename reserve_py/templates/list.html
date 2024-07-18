@@ -48,11 +48,11 @@
                                 <td>{{ period['name'] }}<br>{{ period['term'] }}</td>
                                 
                                 {% for room in rooms.values() %}
-                                    {% if (room['id'], period['id']) in schedules_dict.keys() %}
+                                    {% if (room['id'], period['id']) in schedules.keys() %}
                                         <td>
                                             <a class="filled-schedule" href="{{ url_for('reservations.detail', date = date, room_id = room['id'], period_id = period['id']) }}">
-                                                {{ schedules_dict[(room['id'], period['id'])]['subject_name'] }}<br>
-                                                {{ schedules_dict[(room['id'], period['id'])]['teacher_name'] }}
+                                                {{ schedules[(room['id'], period['id'])]['subject_name'] }}<br>
+                                                {{ schedules[(room['id'], period['id'])]['teacher_name'] }}
                                             </a>
                                         </td>
                                     {% else %}

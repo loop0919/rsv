@@ -30,7 +30,6 @@
 					<td class="item">教員名</td>
 					<td>
                         <select id="teacher" name="teacher" required>
-                            <option value="">選択してください</option>
                             {% for teacher in teachers.values() %}
                                 <option value= "{{ teacher['id'] }}" >{{ teacher['name'] }}</option>
                             {% endfor %}
@@ -61,8 +60,7 @@
 				<tr>
 					<td class="item">科目</td>
 					<td>
-						<select id="subject" name="subject">
-							<option value="">選択してください</option>
+						<select id="subject" name="subject" required>
                             {% for subject in subjects.values() %}
                                 <option value="{{ subject['id'] }}">{{ subject['name'] }}</option>
                             {% endfor %}
