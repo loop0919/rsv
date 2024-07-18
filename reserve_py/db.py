@@ -1,6 +1,7 @@
 import sqlite3
+from pathlib import Path
 
-DATABASE = 'database.db'
+DATABASE = Path('./database.db')
 
 def create_reservation_table():
     conn = sqlite3.connect(DATABASE)

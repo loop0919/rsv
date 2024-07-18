@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 	<title>現在の予約状況</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}">
@@ -50,13 +50,13 @@
                                 {% for room in rooms.values() %}
                                     {% if (room['id'], period['id']) in schedules_dict.keys() %}
                                         <td>
-                                            <a href="{{ url_for('detail', date = date, room_id = room['id'], period_id = period['id']) }}">
+                                            <a class="filled-schedule" href="{{ url_for('reservations.detail', date = date, room_id = room['id'], period_id = period['id']) }}">
                                                 {{ schedules_dict[(room['id'], period['id'])]['subject_name'] }}<br>
                                                 {{ schedules_dict[(room['id'], period['id'])]['teacher_name'] }}
                                             </a>
                                         </td>
                                     {% else %}
-                                        <td><a href="{{ url_for('apply', date = date, room_id = room['id'], period_id = period['id']) }}">予約</a></td>
+                                        <td><a class="empty-schedule" href="{{ url_for('reservations.apply', date = date, room_id = room['id'], period_id = period['id']) }}">予約</a></td>
                                     {% endif %}
                                 {% endfor %}
                             </tr>
