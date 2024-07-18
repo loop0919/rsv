@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>現在の予約状況</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}">
+    <script>
+        function redirectToDate() {
+            var date = document.getElementById("date").value;
+            if (date) {
+                window.location.href = "/list/" + date;
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- メニューバー -->
+    <header>
+        <div id="header_contents">
+            <div id="title_contents">
+                <p id="title_1"><b>○○○○塾</a></b></p>
+                <p id="title_2"><b>教室予約システム</a></b></p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2>400 Bad Request</h2>
+    </main>
+</body>
+</html>

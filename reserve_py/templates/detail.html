@@ -1,0 +1,76 @@
+<html>
+<head>
+	<title>予約内容入力</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/apply.css') }}">
+</head>
+
+<body>
+
+<!-- メニューバー -->
+<header>
+    <div id="header_contents">
+        <div id="title_contents">
+            <p id="title_1"><b>○○○○塾</b></p>
+            <p id="title_2"><b>教室予約システム</b></p>
+        </div>
+    </div>
+</header>
+
+<!-- フォーム -->
+<div id="content">
+	<div class="form_content">
+		<h2>予約確認</h2>
+        <table>
+            <tr>
+                <th>項目</th><th>入力欄</th>
+            </tr>
+            <tr>
+                <td class="item">教員名</td>
+                <td>
+                    <p>
+                        {{ teacher['name'] }}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="item">使用日</td>
+                <td>
+                    <p>{{ date }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="item">使用時間</td>
+                <td>
+                    <p>{{ period['name'] }} ({{ period['term'] }})</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="item">教室</td>
+                <td>
+                    <p>{{ room['name'] }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="item">科目</td>
+                <td>
+                    <p>{{ subject['name'] }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="item">使用人数</td>
+                <td>
+                    <span>{{ people }}</span>
+                    <span>/ {{ room['capacity'] }} 人</span>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="item">備考</td>
+                <td><p>{{ comment }}</p></td>
+            </tr>
+        </table>
+	</div>
+</div>
+
+</body>
+</html>

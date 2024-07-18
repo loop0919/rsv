@@ -1,0 +1,17 @@
+{
+    "1": {
+        "id": 1,
+        "name": "A太郎",
+        "subject": "japanese"
+    },
+    "2": {
+        "id": 2,
+        "name": "B次郎",
+        "subject": "math"
+    },
+    "3": {
+        "id": 3,
+        "name": "C子",
+        "subject": "information"
+    }
+}

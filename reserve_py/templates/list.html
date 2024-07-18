@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>現在の予約状況</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}">
+    <script>
+        function redirectToDate() {
+            var date = document.getElementById("date").value;
+            if (date) {
+                window.location.href = "/list/" + date;
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- メニューバー -->
+    <header>
+        <div id="header_contents">
+            <div id="title_contents">
+                <p id="title_1"><b>○○○○塾</a></b></p>
+                <p id="title_2"><b>教室予約システム</a></b></p>
+            </div>
+        </div>
+    </header>
+    <main class="item_content">
+        <div class="item">
+            <!-- タイムテーブル -->
+            <div id="timetable_box">
+                <table>
+                    <tr>
+                        <td>日付：</td>
+                        <td><input id="date" type="date" name="date" value= "{{ date }}" onchange="redirectToDate()"></td>
+                    </tr>
+                </table>
+                <p id="date_text"><b>{{ date }}</b></p>
+                <table id="timetable">
+                    <thead>
+                        <tr>
+                            <th id="origin">時間</th>
+                            {% for room in rooms.values() %}
+                                <th class="classroom">{{ room['name'] }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for period in periods.values() %}
+                            <tr>
+                                <td>{{ period['name'] }}<br>{{ period['term'] }}</td>
+                                
+                                {% for room in rooms.values() %}
+                                    {% if (room['id'], period['id']) in schedules_dict.keys() %}
+                                        <td>
+                                            <a href="{{ url_for('detail', date = date, room_id = room['id'], period_id = period['id']) }}">
+                                                {{ schedules_dict[(room['id'], period['id'])]['subject_name'] }}<br>
+                                                {{ schedules_dict[(room['id'], period['id'])]['teacher_name'] }}
+                                            </a>
+                                        </td>
+                                    {% else %}
+                                        <td><a href="{{ url_for('apply', date = date, room_id = room['id'], period_id = period['id']) }}">予約</a></td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

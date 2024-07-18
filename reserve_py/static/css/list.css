@@ -1,0 +1,164 @@
+/* メニューバー */
+header {
+    width: 100%;
+    height: 52px;
+    background-color: rgb(0, 29, 122);
+	padding-top: -20px;
+}
+#title_contents{
+	list-style: none;
+    display: block;
+    color: white;
+    margin-left: 30px;
+	white-space: nowrap;
+}
+#title_1{
+	font-size: 18px;
+}
+#title_2{
+	margin-top: -26px;
+	font-size: 25px;
+}
+ul { 
+	margin-top: -80px;
+	display: flex; 
+	justify-content: right;
+}
+li { 
+	list-style: none;
+    display: block;
+    color: white;
+	margin-top: 12px;
+    margin-right: 35px;
+	white-space: nowrap;
+}
+.header_contents{
+	display: flex;
+	justify-content: space-between;
+}
+
+a{ text-decoration: none; }
+/*a:visited{ color: white; }*/
+.current{ 
+	margin-top: 7px;
+	margin-left: -10px;
+	margin-right: 25px;
+	padding: 5px 10px 5px;
+	background-color: rgb(142, 187, 239); 
+}
+
+
+#attention {
+	border: 1px #f00 solid;
+	padding: 10px;
+	margin-bottom: 30px;
+}
+#attention p.msg {
+	font-size: 110%;
+	font-weight: bold;
+	margin-bottom:10px;
+}
+#attention ul {
+	list-style-type: square;
+	margin: 10px 20px;
+}
+#timetable_box,
+#form_box,
+#calendar_box {
+	float:left;
+	margin-right:50px;
+}
+
+/* タイムテーブル */
+.item{ margin-top: 40px; }
+table{ margin-top: 10px; }
+#date_text{ 
+	font-size: 30px; 
+	text-align: right;
+	margin: -40px 0 0;
+}
+table#timetable{
+	border-collapse: separate;
+	border-spacing: 0px;
+	border: 1px solid #eee;
+}
+table#timetable th {
+	padding: 3px;
+	background-color: #ddd;
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	font-weight:bold;
+	text-align:center;
+}
+table#timetable td {
+	padding: 3px;
+	border: 1px solid #eee;
+}
+table#timetable td input { /* タイムテーブル内inputボタン */
+	width:18px;
+	height:18px;
+	padding:0;
+	margin:3px 3px 0 0;
+	line-height:0;
+	text-align:center;
+	vertical-align:middle;
+	float:left;
+}
+table#timetable td.exist{ /* データが存在するセル */
+	background-color:#f6f6f6; /* 背景色 */
+}
+table#timetable td.exist img{
+	float:left;
+	margin-top:3px;
+}
+table#timetable th.classroom {
+	width:130px; /* 中身の横幅 */
+}
+table#timetable tbody tr {
+	height:60px; /*中身の縦幅*/
+}
+
+
+
+/* カレンダー */
+h2{ text-align: center; }
+table.rsv_calendar {
+	width:180px;
+	margin-bottom:30px;
+}
+table.rsv_calendar caption{
+	font-weight:bold;
+	margin-bottom:5px;
+}
+table.rsv_calendar td,
+table.rsv_calendar th {
+	text-align:center;
+}
+table.rsv_calendar td#today {
+	background-color:#eee; /* 今日の背景色 */
+}
+table.rsv_calendar td#current {
+	background-color:#ffebae; /* クリックした日の背景色 */
+}
+table.rsv_calendar td input { /* カレンダー内inputボタン */
+	background: none;
+	border: none;
+	padding: 0;
+	box-shadow: none;
+	color: #09c;
+	text-decoration: underline;
+}
+table.rsv_calendar td input:hover {
+	color: #8bc; /* リンクホバー色 */
+	background: none;
+}
+
+/* 全体 */
+.item_content{ 
+	display: flex;
+	margin: 0 auto;
+	justify-content: center;
+	float: none;
+}

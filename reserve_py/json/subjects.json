@@ -1,0 +1,26 @@
+{
+    "japanese": {
+        "id": "japanese",
+        "name": "国語"
+    },
+    "math": {
+        "id": "math",
+        "name": "算数"
+    },
+    "english": {
+        "id": "english",
+        "name": "英語"
+    },
+    "science": {
+        "id": "science",
+        "name": "理科"
+    },
+    "social_studies": {
+        "id": "social_studies",
+        "name": "社会"
+    },
+    "information": {
+        "id": "information",
+        "name": "情報"
+    }
+}
