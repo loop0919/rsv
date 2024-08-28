@@ -70,6 +70,12 @@
                 <td><p>{{ comment }}</p></td>
             </tr>
         </table>
+        <form id="form" action="/delete" method="post">
+            <input type="hidden" name="date" value="{{ date }}"/>
+            <input type="hidden" name="period" value="{{ period['id'] }}"/>
+            <input type="hidden" name="room" value="{{ room['id'] }}"/>
+            <input type="submit" value="削除"/>
+        </form>
 	</div>
 </div>
 </body>

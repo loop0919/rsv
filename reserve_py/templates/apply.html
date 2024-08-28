@@ -19,6 +19,13 @@
 
 <!-- フォーム -->
 <div id="content">
+	{%if errors != [] %}
+		<div id="errors">
+			{% for error in errors %}
+				<p>Error: {{ error }}</p>
+			{% endfor %}
+		</div>
+	{% endif %}
 	<div class="form_content">
 		<h2>新規予約</h2>
 		<form id="form" action="/apply" method="post">
@@ -31,7 +38,7 @@
 					<td>
                         <select id="teacher" name="teacher" required>
                             {% for teacher in teachers.values() %}
-                                <option value= "{{ teacher['id'] }}" >{{ teacher['name'] }}</option>
+                                <option value= "{{ teacher['id'] }}" {{ 'selected' if 'teacher' in data.keys() and teacher['id'] == data['teacher'] else '' }}>{{ teacher['name'] }}</option>
                             {% endfor %}
                         </select>
                     </td>
@@ -62,7 +69,7 @@
 					<td>
 						<select id="subject" name="subject" required>
                             {% for subject in subjects.values() %}
-                                <option value="{{ subject['id'] }}">{{ subject['name'] }}</option>
+                                <option value="{{ subject['id'] }}" {{ "selected" if 'subject' in data.keys() and subject['id'] == data['subject'] else "" }}>{{ subject['name'] }}</option>
                             {% endfor %}
 						</select>
 					</td>			
@@ -70,14 +77,14 @@
 				<tr>
 					<td class="item">使用人数</td>
 					<td>
-						<input id="people" type="text" name="people" size="5" value="" required/>
+						<input id="people" type="text" name="people" size="5" value="{{ data['people'] if 'people' in data.keys() else '' }}" required/>
                         <span>/ {{ room['capacity'] }} 人</span>
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="item">備考</td>
-					<td><textarea id="comment" name="comment" cols="40" rows="3"></textarea></td>
+					<td><textarea id="comment" name="comment" cols="40" rows="3">{{ data['comment'] if 'comment' in data.keys() else '' }}</textarea></td>
 				</tr>
 			</table>
 

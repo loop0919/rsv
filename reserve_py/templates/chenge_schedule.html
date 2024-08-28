@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>現在の予約状況</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}">
+    <script>
+        function redirectToDate() {
+            var date = document.getElementById("date").value;
+            if (date) {
+                window.location.href = "/list/" + date;
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- メニューバー -->
+    <header>
+        <div id="header_contents">
+            <div id="title_contents">
+                <p id="title_1"><b>○○○○塾</a></b></p>
+                <p id="title_2"><b>教室予約システム</a></b></p>
+            </div>
+        </div>
+    </header>
+    <main class="item_content">
+        <!-- フォーム -->
+        <div id="content">
+            {%if errors != [] %}
+                <div id="errors">
+                    {% for error in errors %}
+                        <p>Error: {{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="form_content">
+                <h2>新規予約</h2>
+                <form id="form" action="/apply" method="post">
+                    <table>
+                        <tr>
+                            <th>項目</th><th>入力欄</th>
+                        </tr>
+                        {% for period in periods %}
+                        <tr>
+                            <td class="item">教員名</td>
+                            <td>
+                                <select id="teacher" name="teacher" required>
+                                    {% for teacher in teachers.values() %}
+                                        <option value= "{{ teacher['id'] }}" {{ 'selected' if 'teacher' in data.keys() and teacher['id'] == data['teacher'] else '' }}>{{ teacher['name'] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </table>
+
+                    <input type="submit" value="登録"/>
+                    
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

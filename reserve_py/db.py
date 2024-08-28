@@ -18,4 +18,6 @@ def create_reservation_table():
         )
         """
     )
+    
+    conn.commit()
     conn.close()

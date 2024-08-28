@@ -22,5 +22,9 @@
     "information": {
         "id": "information",
         "name": "情報"
+    },
+    "others": {
+        "id": "others",
+        "name": "その他"
     }
 }
