@@ -33,7 +33,6 @@
                     </tr>
                 </table>
                 <p id="date_text"><b>{{ date }}</b></p>
-                <a class="change-schedule" href="{{ url_for('reservations.change_schedule', date = date) }}">時間変更</a>
                 <table id="timetable">
                     <thead>
                         <tr>
@@ -46,7 +45,7 @@
                     <tbody>
                         {% for period in periods.values() %}
                             <tr>
-                                <td>{{ period['name'] }}<br>{{ period['term'] }}</td>
+                                <td>{{ period['name'] }}</td>
                                 
                                 {% for room in rooms.values() %}
                                     {% if (room['id'], period['id']) in schedules.keys() %}

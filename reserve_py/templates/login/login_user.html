@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>ログイン画面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+
+<body>
+<header>
+    <div id="header_contents">
+        <div id="title_contents">
+            <p id="title_1"><b>○○○○塾</b></p>
+            <p id="title_2"><b>教室予約システム</b></p>
+        </div>
+    </div>
+</header>
+
+<!-- ホーム -->
+<div class = "login">
+    <h1>ログイン</h1>
+    <h5>予約申請者用</h5>
+    <a href="">管理者用はこちら</a>
+    <form action="home.html">
+        <div class="login_user">
+            <label>ID</label>
+            <br/>
+            <input type="text" name="ID" size="15" value="" required/>
+            <br/>
+            <label>パスワード</label>
+            <br/>
+            <input type="password" name="pass" size="15" value="" required/>
+            <br/>
+        </div>
+        <br />
+        <input class="button" type="submit" value=" ログイン " required/>
+    </form>
+</div>
+</body>
+</html>
