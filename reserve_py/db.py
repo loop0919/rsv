@@ -19,5 +19,11 @@ def create_reservation_table():
         """
     )
     
+    conn.execute(
+        """
+        
+        """
+    )
+    
     conn.commit()
     conn.close()
