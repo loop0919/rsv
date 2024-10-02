@@ -21,7 +21,6 @@ def create_reservation_table():
     
     conn.execute(
         """
-        
         """
     )
     
