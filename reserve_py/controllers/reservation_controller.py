@@ -7,6 +7,8 @@ reservation_bp = Blueprint('reservations', __name__)
 
 @reservation_bp.route('/list/<date>')
 def list(date):
+    disabled = request.args.get("disabled") is not None
+    
     if not service.match_date_format(date):
         return render_template('error/400.html'), 400
     return render_template(
@@ -14,7 +16,8 @@ def list(date):
         date=date,
         rooms=service.get_all_rooms(), 
         periods=service.get_all_periods(), 
-        schedules=service.get_schedules_by_date(date)
+        schedules=service.get_schedules_by_date(date),
+        disabled=disabled
     )
 
 
