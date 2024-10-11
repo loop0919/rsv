@@ -1,5 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 
+from reserve_py.controllers.login_controller import sessions
 from reserve_py.services import reservation_service as service
 
 reservation_bp = Blueprint('reservations', __name__)
@@ -7,14 +8,18 @@ reservation_bp = Blueprint('reservations', __name__)
 
 @reservation_bp.route('/list/<date>')
 def list(date):
+    authorized = request.cookies.get("session", None) in sessions
+    
     if not service.match_date_format(date):
         return render_template('error/400.html'), 400
+    
     return render_template(
         'list.html', 
         date=date,
         rooms=service.get_all_rooms(), 
         periods=service.get_all_periods(), 
-        schedules=service.get_schedules_by_date(date)
+        schedules=service.get_schedules_by_date(date),
+        authorized=authorized
     )
 
 
@@ -30,6 +35,10 @@ def list_default():
 
 @reservation_bp.route('/apply', methods=['GET'])
 def apply():
+    authorized = request.cookies.get("session", None) in sessions
+    if not authorized:
+        return render_template('error/404.html'), 404
+    
     date = request.args.get("date")
     room_id = request.args.get("room_id")
     period_id = request.args.get("period_id")
@@ -51,6 +60,10 @@ def apply():
 
 @reservation_bp.route('/apply', methods=['POST'])
 def apply_post():
+    authorized = request.cookies.get("session", None) in sessions
+    if not authorized:
+        return render_template('error/404.html'), 404
+    
     data = request.form
     
     is_valid, error_msg = service.save_reservation(data)
@@ -71,6 +84,8 @@ def apply_post():
 
 @reservation_bp.route("/detail/", methods=["GET"])
 def detail():
+    authorized = request.cookies.get("session", None) in sessions
+    
     date = request.args.get("date")
     room_id = request.args.get("room_id")
     period_id = request.args.get("period_id")
@@ -103,26 +118,19 @@ def detail():
         room=room,
         period=period,
         people=schedule['people'],
-        comment=schedule['comment']
+        comment=schedule['comment'],
+        authorized=authorized
     )
 
 
 @reservation_bp.route('/delete', methods=['POST'])
 def delete_post():
+    authorized = request.cookies.get("session", None) in sessions
+    if not authorized:
+        return render_template('error/400.html'), 400
+    
     data = request.form
     
     service.delete_reservation(data)
     return redirect(url_for("reservations.list", date=data['date']))
 
-
-@reservation_bp.route('/change_schedule', methods=['GET'])
-def change_schedule():
-    date = request.args.get("date")
-
-    if not date:
-        return render_template('error/400.html'), 400
-
-    return render_template(
-        'chenge_schedule.html',
-        date=date
-    )

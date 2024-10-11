@@ -19,6 +19,9 @@
             <div id="title_contents">
                 <p id="title_1"><b>○○○○塾</a></b></p>
                 <p id="title_2"><b>教室予約システム</a></b></p>
+                {% if authorized == False %}
+                    <a href="{{url_for('login.login')}}">ログイン</a>
+                {% endif %}
             </div>
         </div>
     </header>
@@ -55,8 +58,10 @@
                                                 {{ schedules[(room['id'], period['id'])]['teacher_name'] }}
                                             </a>
                                         </td>
-                                    {% else %}
+                                    {% elif authorized %}
                                         <td><a class="empty-schedule" href="{{ url_for('reservations.apply', date = date, room_id = room['id'], period_id = period['id']) }}">予約</a></td>
+                                    {% else %}
+                                        <td><p>-</p></td>
                                     {% endif %}
                                 {% endfor %}
                             </tr>

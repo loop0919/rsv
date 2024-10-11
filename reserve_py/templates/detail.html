@@ -13,6 +13,9 @@
         <div id="title_contents">
             <p id="title_1"><b>○○○○塾</b></p>
             <p id="title_2"><b>教室予約システム</b></p>
+            {% if authorized == False %}
+                <a href="{{url_for('login.login')}}">ログイン</a>
+            {% endif %}
         </div>
     </div>
 </header>
@@ -70,12 +73,14 @@
                 <td><p>{{ comment }}</p></td>
             </tr>
         </table>
-        <form id="form" action="/delete" method="post">
-            <input type="hidden" name="date" value="{{ date }}"/>
-            <input type="hidden" name="period" value="{{ period['id'] }}"/>
-            <input type="hidden" name="room" value="{{ room['id'] }}"/>
-            <input type="submit" value="削除"/>
-        </form>
+        {% if authorized %}
+            <form id="form" action="/delete" method="post">
+                <input type="hidden" name="date" value="{{ date }}"/>
+                <input type="hidden" name="period" value="{{ period['id'] }}"/>
+                <input type="hidden" name="room" value="{{ room['id'] }}"/>
+                <input type="submit" value="削除"/>
+            </form>
+        {% endif %}
 	</div>
 </div>
 </body>
